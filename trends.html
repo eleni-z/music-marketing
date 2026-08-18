@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026 Trends — Amplify</title>
+<meta name="description" content="Charted: where music industry revenue comes from, the short-form video effect, the superfan economy, and AI's growing footprint in 2026." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎧</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">🎧</span> Amplify</a>
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="techniques.html">Techniques</a>
+      <a href="genres/pop.html">Pop</a>
+      <a href="genres/country.html">Country</a>
+      <a href="genres/rock.html">Rock</a>
+      <a href="genres/hiphop-rnb.html">Hip-Hop/R&B</a>
+      <a href="trends.html" class="active">2026 Trends</a>
+      <a href="sources.html">Sources</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" style="padding-top:64px;">
+  <div class="container">
+    <span class="eyebrow">Data · 2026</span>
+    <h1>The numbers behind this year's shift.</h1>
+    <p class="lead">Four charts that summarize where the industry's money, attention, and growth are actually going in 2026 — each sourced and cross-checked on the <a href="sources.html" style="color:var(--accent);">Sources</a> page.</p>
+  </div>
+</header>
+
+<section style="padding-top:12px;">
+  <div class="container">
+    <div class="chart-grid">
+
+      <div class="chart-card">
+        <h3 class="mt-0">Where global recorded-music revenue comes from</h3>
+        <canvas id="revenueMix" height="300"></canvas>
+        <div class="chart-note">Paid subscription streaming = 52.4% of global revenue; ad-supported streaming makes up the remainder of streaming's 69.6% total share. The remaining 30.4% covers physical, downloads, performance rights, and sync. Source: IFPI Global Music Report 2026.</div>
+      </div>
+
+      <div class="chart-card">
+        <h3 class="mt-0">The short-form video effect</h3>
+        <canvas id="shortForm" height="300"></canvas>
+        <div class="chart-note">These three figures measure different things and different samples — shown together to illustrate scale, not as one dataset. Sources: MusicWatch/Luminate-cited 2026 discovery data; Billboard/Luminate TikTok chart-correlation reporting.</div>
+      </div>
+
+      <div class="chart-card">
+        <h3 class="mt-0">The superfan economy is growing fast</h3>
+        <canvas id="superfan" height="300"></canvas>
+        <div class="chart-note">Estimated superfan monetization market size. The top 1% of superfans spend an average of $892/year on artist-related purchases. Source: Nielsen Music (Feb. 2026), cross-referenced with Goldman Sachs' "Music In The Air" report.</div>
+      </div>
+
+      <div class="chart-card">
+        <h3 class="mt-0">AI's growing (and varied) footprint</h3>
+        <canvas id="aiFootprint" height="300"></canvas>
+        <div class="chart-note">Each bar measures a distinct use case — production adoption, share of new uploads, and algorithmically-curated listening time — not the same metric. Source: 2026 AI-in-music industry surveys and market reports.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">Reading these charts</span>
+      <h2>Growth is real — but it's uneven and channel-specific.</h2>
+      <p>No single platform or technique explains 2026's growth on its own. Streaming revenue keeps climbing, short-form video keeps eating discovery, superfans keep concentrating revenue, and AI keeps expanding its footprint in production and curation alike. The through-line: control over direct fan relationships (first-party data, community, superfans) is what separates artists who capture this growth from those who just generate impressions for a platform.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© <span data-year></span> Amplify — Music Marketing Intelligence. Built for educational use.</span>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="techniques.html">Techniques</a>
+      <a href="sources.html">Sources</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/main.js"></script>
+<script>
+  new Chart(document.getElementById('revenueMix'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Paid subscription streaming', 'Ad-supported streaming', 'Other (physical, downloads, rights, sync)'],
+      datasets: [{
+        data: [52.4, 17.2, 30.4],
+        backgroundColor: [PALETTE.accent, PALETTE.platform, PALETTE.muted],
+        borderColor: '#191c28',
+        borderWidth: 3,
+        hoverOffset: 8,
+      }]
+    },
+    options: {
+      responsive: true, cutout: '58%',
+      plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: (ctx) => `${ctx.label}: ${ctx.parsed}%` } } }
+    }
+  });
+
+  new Chart(document.getElementById('shortForm'), {
+    type: 'bar',
+    data: {
+      labels: ['Listeners discovering\nvia short-form first', 'Social media users\ndiscovering via short-form', 'Billboard Global 200\nentrants viral on TikTok first'],
+      datasets: [{
+        data: [47, 68, 84],
+        backgroundColor: [PALETTE.accent2, PALETTE.hiphop, PALETTE.accent],
+        borderRadius: 6,
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: (ctx) => ctx.parsed.x + '%' } } },
+      scales: {
+        x: { max: 100, grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { callback: (v) => v + '%' } },
+        y: { grid: { display: false } }
+      }
+    }
+  });
+
+  new Chart(document.getElementById('superfan'), {
+    type: 'bar',
+    data: {
+      labels: ['2024', '2026'],
+      datasets: [{
+        label: 'Market size ($B)',
+        data: [4.5, 6.1],
+        backgroundColor: [PALETTE.muted, PALETTE.accent2],
+        borderRadius: 6,
+        maxBarThickness: 70,
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { callback: (v) => '$' + v + 'B' } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+
+  new Chart(document.getElementById('aiFootprint'), {
+    type: 'bar',
+    data: {
+      labels: ['Musicians using AI\nin their projects', 'New uploads that are\nAI-assisted', 'Streaming listening time\ndriven by AI algorithms'],
+      datasets: [{
+        data: [60, 22, 30],
+        backgroundColor: [PALETTE.platform, PALETTE.country, PALETTE.hiphop],
+        borderRadius: 6,
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: (ctx) => ctx.parsed.x + '%' } } },
+      scales: {
+        x: { max: 100, grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { callback: (v) => v + '%' } },
+        y: { grid: { display: false } }
+      }
+    }
+  });
+</script>
+</body>
+</html>
